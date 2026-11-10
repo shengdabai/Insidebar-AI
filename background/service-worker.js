@@ -1,4 +1,4 @@
-import { notifyMessage } from '../modules/messaging.js';
+import { notifyMessage, sendMessageWithTimeout } from '../modules/messaging.js';
 import {
   saveConversation,
   findConversationByConversationId
@@ -331,6 +331,8 @@ chrome.windows.onRemoved.addListener((windowId) => {
 
 // T070: Listen for sidebar close notifications, conversation saves, and duplicate checks
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (!message || typeof message.action !== 'string') return false;
+
   if (message.action === 'sidePanelClosed') {
     // Get windowId from sender
     if (sender.tab && sender.tab.windowId) {
@@ -343,14 +345,16 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return true; // Keep channel open for async response
   } else if (message.action === 'checkDuplicateConversation') {
     // Handle duplicate check request
-    handleCheckDuplicate(message.payload).then(sendResponse);
+    handleCheckDuplicate(message.payload).then(sendResponse, error => {
+      sendResponse({ success: false, error: error.message });
+    });
     return true; // Keep channel open for async response
   } else if (message.action === 'fetchLatestCommit') {
     // T073: Handle version check request from options page
     handleFetchLatestCommit().then(sendResponse);
     return true; // Keep channel open for async response
   }
-  return true;
+  return false;
 });
 
 // T073: Handle version check by fetching latest commit from GitHub API
@@ -522,7 +526,7 @@ chrome.commands.onCommand.addListener(async (command, tab) => {
       // Sidebar is open - toggle focus between sidebar and page
       try {
         // Check if sidebar has focus
-        const sidebarResponse = await notifyMessage({
+        const sidebarResponse = await sendMessageWithTimeout({
           action: 'checkFocus',
           payload: {}
         });
