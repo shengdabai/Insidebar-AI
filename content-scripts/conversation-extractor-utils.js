@@ -281,7 +281,7 @@
           ${chrome.i18n.getMessage('dlgDuplicateDesc')}
         </p>
         <p style="margin: 0 0 16px 0; font-size: 13px; color: #666; font-weight: 500;">
-          "${title}"<br>
+          "<span data-duplicate-title></span>"<br>
           <span style="font-size: 12px;">${chrome.i18n.getMessage('dlgDuplicateSaved', [existingDate])}</span>
         </p>
         <p style="margin: 0 0 20px 0; font-size: 14px; line-height: 1.5;">
@@ -318,6 +318,7 @@
       </div>
     `;
 
+    modal.querySelector('[data-duplicate-title]').textContent = title;
     document.body.appendChild(modal);
 
     // Add event listeners
@@ -326,8 +327,8 @@
       resolve(choice);
     };
 
-    document.getElementById('insidebar-dup-cancel').addEventListener('click', () => cleanup('cancel'));
-    document.getElementById('insidebar-dup-overwrite').addEventListener('click', () => cleanup('overwrite'));
+    modal.querySelector('#insidebar-dup-cancel').addEventListener('click', () => cleanup('cancel'));
+    modal.querySelector('#insidebar-dup-overwrite').addEventListener('click', () => cleanup('overwrite'));
 
     // Close on outside click (same as cancel)
     modal.addEventListener('click', (e) => {
