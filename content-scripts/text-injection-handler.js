@@ -13,8 +13,14 @@ export function createTextInjectionHandler(selectors, providerName) {
   const selectorArray = Array.isArray(selectors) ? selectors : [selectors];
 
   return function handleTextInjection(event) {
+    if (!event?.isTrusted || event.origin !== chrome.runtime.getURL('').replace(/\/$/, '') ||
+        (event.source !== window.parent && event.source !== null)) {
+      return;
+    }
+
     // Only handle INJECT_TEXT messages
-    if (!event.data || event.data.type !== 'INJECT_TEXT' || !event.data.text) {
+    if (!event.data || event.data.type !== 'INJECT_TEXT' ||
+        typeof event.data.text !== 'string' || !event.data.text || event.data.text.length > 1048576) {
       return;
     }
 

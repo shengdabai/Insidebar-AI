@@ -137,12 +137,12 @@
 
   // Handle text injection message
   function handleTextInjection(event) {
-    // Origin verification: only accept messages from the same window or chrome-extension
-    if (event.source !== window && event.source !== null) {
+    // Only this extension's sidebar may inject text. Privileged senders can
+    // have a null source; the exact origin must still match our runtime ID.
+    if (!event?.isTrusted || event.origin !== chrome.runtime.getURL('').replace(/\/$/, '')) {
       return;
     }
-    if (event.origin && event.origin !== window.location.origin &&
-        !event.origin.startsWith('chrome-extension://')) {
+    if (event.source !== window.parent && event.source !== null) {
       return;
     }
 

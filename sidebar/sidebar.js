@@ -485,7 +485,7 @@ async function injectTextIntoProvider(providerId, text) {
         type: 'INJECT_TEXT',
         text: text
       },
-      '*' // We're posting to same-origin AI provider domains
+      new URL(iframe.src).origin
     );
   } catch (error) {
     console.error('Error sending text injection message:', error);
