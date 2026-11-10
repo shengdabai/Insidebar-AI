@@ -31,12 +31,6 @@
     "*://api.github.com/*"
   ],
 
-  "optional_host_permissions": [
-    "*://localhost/*",
-    "*://127.0.0.1/*",
-    "*://*/*"
-  ],
-
   "background": {
     "service_worker": "background/service-worker.js",
     "scripts": ["background/service-worker.js"],
@@ -230,16 +224,6 @@
       "all_frames": false
     }
   ],
-
-  "declarative_net_request": {
-    "rule_resources": [
-      {
-        "id": "bypass_headers",
-        "enabled": true,
-        "path": "rules/bypass-headers.json"
-      }
-    ]
-  },
 
   "web_accessible_resources": [
     {

@@ -1,6 +1,7 @@
 import { PROVIDERS, getProviderById, getProviderByIdWithSettings, getEnabledProviders } from '../modules/providers.js';
 import { escapeHtml, sanitizeHtml, renderExternalLink } from '../modules/html-utils.js';
 import { applyTheme } from '../modules/theme-manager.js';
+import { installHeaderRules } from '../modules/header-rules.js';
 import { t, translatePage, initializeLanguage } from '../modules/i18n.js';
 import {
   getAllPrompts,
@@ -59,6 +60,12 @@ function isDarkTheme() {
 
 // T013: Initialize sidebar
 async function init() {
+  try {
+    await installHeaderRules();
+  } catch (error) {
+    // Keep the sidebar usable if rules are unavailable; framing stays blocked.
+    console.warn('[Sidebar] Could not install header rules:', error.message);
+  }
   await applyTheme();
   await initializeLanguage();  // Initialize i18n
   translatePage();  // Translate all static text

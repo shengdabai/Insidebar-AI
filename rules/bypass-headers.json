@@ -10,7 +10,8 @@
       ]
     },
     "condition": {
-      "urlFilter": "https://chatgpt.com/*",
+      "tabIds": [-1],
+      "urlFilter": "|https://chatgpt.com/*",
       "resourceTypes": ["sub_frame"]
     }
   },
@@ -25,7 +26,8 @@
       ]
     },
     "condition": {
-      "urlFilter": "https://chat.openai.com/*",
+      "tabIds": [-1],
+      "urlFilter": "|https://chat.openai.com/*",
       "resourceTypes": ["sub_frame"]
     }
   },
@@ -40,7 +42,8 @@
       ]
     },
     "condition": {
-      "urlFilter": "https://claude.ai/*",
+      "tabIds": [-1],
+      "urlFilter": "|https://claude.ai/*",
       "resourceTypes": ["sub_frame"]
     }
   },
@@ -55,7 +58,8 @@
       ]
     },
     "condition": {
-      "urlFilter": "https://gemini.google.com/*",
+      "tabIds": [-1],
+      "urlFilter": "|https://gemini.google.com/*",
       "resourceTypes": ["sub_frame"]
     }
   },
@@ -70,7 +74,8 @@
       ]
     },
     "condition": {
-      "urlFilter": "https://grok.com/*",
+      "tabIds": [-1],
+      "urlFilter": "|https://grok.com/*",
       "resourceTypes": ["sub_frame"]
     }
   },
@@ -85,7 +90,8 @@
       ]
     },
     "condition": {
-      "urlFilter": "https://chat.deepseek.com/*",
+      "tabIds": [-1],
+      "urlFilter": "|https://chat.deepseek.com/*",
       "resourceTypes": ["sub_frame"]
     }
   },
@@ -99,7 +105,8 @@
       ]
     },
     "condition": {
-      "urlFilter": "http://localhost:3000/*",
+      "tabIds": [-1],
+      "urlFilter": "|http://localhost:3000/*",
       "resourceTypes": ["sub_frame"]
     }
   },
@@ -114,7 +121,8 @@
       ]
     },
     "condition": {
-      "urlFilter": "https://www.google.com/*",
+      "tabIds": [-1],
+      "urlFilter": "|https://www.google.com/*",
       "resourceTypes": ["sub_frame"]
     }
   },
@@ -129,7 +137,8 @@
       ]
     },
     "condition": {
-      "urlFilter": "https://copilot.microsoft.com/*",
+      "tabIds": [-1],
+      "urlFilter": "|https://copilot.microsoft.com/*",
       "resourceTypes": ["sub_frame"]
     }
   },
@@ -144,7 +153,8 @@
       ]
     },
     "condition": {
-      "urlFilter": "https://www.bing.com/*",
+      "tabIds": [-1],
+      "urlFilter": "|https://www.bing.com/*",
       "resourceTypes": ["sub_frame"]
     }
   },
@@ -159,7 +169,8 @@
       ]
     },
     "condition": {
-      "urlFilter": "https://bing.com/*",
+      "tabIds": [-1],
+      "urlFilter": "|https://bing.com/*",
       "resourceTypes": ["sub_frame"]
     }
   }
